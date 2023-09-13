@@ -12,16 +12,16 @@ interface Query {
 }
 
 const getProducts = async( query: Query ): Promise<Product[]> => {
-    const url = qs.stringifyUrl({
+    const productUrl = qs.stringifyUrl({
         url: URL,
         query: {
             colorId: query.colorId,
-            categoryId: query.categoryId,
             sizeId: query.sizeId,
-            isFeatured: query.isFeatured
+            categoryId: query.categoryId,
+            isFeatured: query.isFeatured,
         },
     })
-    const res = await fetch(url);
+    const res = await fetch(productUrl);
 
     return res.json();
 }
