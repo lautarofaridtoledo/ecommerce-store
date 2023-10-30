@@ -1,13 +1,13 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import axios from "axios"
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 import Button from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
 
 const Summary = () => {
 
@@ -32,6 +32,7 @@ const Summary = () => {
     useEffect(() => {
         if(searchParams.get("success")) {
             toast.success("Payment completed.");
+            removeAll();
         }
 
         if(searchParams.get("canceled")) {
@@ -64,7 +65,9 @@ const Summary = () => {
             </div>
             <Button
                 onClick={onCheckout}
-                className="w-full mt-6">
+                className="w-full mt-6"
+                disabled={items.length === 0}
+            >
                 Checkout
             </Button>
         </div>
