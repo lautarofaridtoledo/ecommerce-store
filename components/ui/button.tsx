@@ -7,6 +7,7 @@ export interface ButtonProps
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     className,
+    disabled,
     children,
     type= "button",
     ...props
@@ -14,6 +15,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     return (
         <button
             ref={ref}
+            disabled={disabled}
             className={cn(
                 `
                 w-auto
@@ -31,6 +33,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
                 `,
                 className
             )}
+            {...props}
         >
         {children}
         </button>
